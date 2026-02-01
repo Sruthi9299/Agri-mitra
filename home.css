@@ -1,0 +1,365 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+    color:white;
+    overflow-x:hidden;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    backdrop-filter:blur(10px);
+    background: #3CB371;
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+/* MENU */
+
+.menu-btn{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+}
+
+.menu-btn span{
+    width:25px;
+    height:3px;
+    background:white;
+    border-radius:5px;
+}
+
+/* LOGO */
+
+.logo-container img{
+    width: 70px;          /* Ideal navbar size */
+    height: 60px;
+    border-radius: 0%;   /* Makes it round */
+    object-fit: cover;    /* Prevent stretching */
+    display: block;
+}
+
+/* Optional: if navbar alignment is messy */
+.logo-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+/* FLOAT */
+
+@keyframes float{
+    50%{transform:translateY(-6px);}
+}
+
+
+/* RIGHT */
+
+.right-nav{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+button{
+    border:none;
+    padding:8px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.login{
+    background:#FFC107;
+}
+
+.profile{
+    background:rgba(0,0,0,0.35);
+    color:white;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+
+
+/* ================= SIDE MENU ================= */
+
+.side-menu{
+    position:fixed;
+    left:-260px;
+    top:0;
+    width:260px;
+    height:100%;
+    background:#14532d;
+    transition:.5s;
+    padding-top:60px;
+    z-index:1000;
+}
+
+.side-menu ul{
+    list-style:none;
+}
+
+.side-menu li{
+    padding:20px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.side-menu li:hover{
+    background:#22c55e;
+    padding-left:30px;
+}
+
+.close-btn{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:24px;
+    cursor:pointer;
+}
+
+
+
+/* ================= HERO ================= */
+
+.hero{
+    height:85vh;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:40px;
+    flex-wrap:wrap;
+}
+
+.hero-text{
+    max-width:500px;
+    animation:fadeUp 1.2s ease;
+    color:#2e7d32;
+}
+
+.hero h1{
+    font-size:48px;
+    color: #2e7d32;
+}
+
+.hero p{
+    margin:20px 0;
+    color:#2e7d32;
+}
+
+.cta{
+    background:#22c55e;
+    color:white;
+    padding:12px 24px;
+}
+
+
+/* FADE */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+}
+
+
+
+/* ================= AI BOT ================= */
+
+.ai-bot{
+    position:relative;
+}
+
+/* SOUND WAVES */
+
+.waves{
+    position:absolute;
+    width:160px;
+    height:160px;
+    border:3px solid #22c55e;
+    border-radius:50%;
+    animation:wave 2s infinite;
+}
+
+.waves.delay{
+    animation-delay:1s;
+}
+
+@keyframes wave{
+    from{
+        transform:scale(.5);
+        opacity:.8;
+    }
+    to{
+        transform:scale(1.5);
+        opacity:0;
+    }
+}
+
+.bot{
+    font-size:70px;
+    position:relative;
+    z-index:2;
+    animation:hoverBot 3s infinite ease-in-out;
+}
+
+@keyframes hoverBot{
+    50%{transform:translateY(-12px);}
+}
+
+
+
+/* ================= CARDS ================= */
+
+.cards-section{
+    padding:50px 20px;
+    text-align:center;
+    color:#555;;
+}
+
+.section-title{
+    font-size:32px;
+    margin-bottom:40px;
+    color:#555;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#f0fff4;
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    transition:.4s;
+    cursor:pointer;
+    /* box-shadow: 0 20px 40px rgba(0,0,0,0.35); */
+}
+
+.card:hover{
+    transform:translateY(-15px) scale(1.03);
+    box-shadow:0 20px 40px rgba(0,0,0,.4);
+}
+
+.icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.card button{
+    margin-top:15px;
+    background:#22c55e;
+    color:white;
+}
+
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+    .hero{
+        text-align:center;
+        gap:50px;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .right-nav p{
+        display:none;
+    }
+}
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    margin:50px;
+}
+
+/* AI Bot Container */
+.bot-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Bot Image */
+#aiBot {
+    width: 220px; /* bigger size */
+    cursor: pointer;
+}
+
+/* Sound Waves */
+.wave {
+    position: absolute;
+    border: 2px solid #4caf50;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    height: 220px;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+    animation: wave 2s infinite;
+}
+
+.wave:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.wave:nth-child(3) {
+    animation-delay: 1s;
+}
+
+/* Wave animation */
+@keyframes wave {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+li{
+    color:white;
+    text-decoration: none;
+    font-size: 15px;
+}
+.para-hello{
+    font-size:20px;
+    font-style:default;
+}
+.logo img{
+    height:55px;
+    width:55px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid white;
+}

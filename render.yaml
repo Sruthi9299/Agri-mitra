@@ -1,0 +1,27 @@
+# Render.com deployment – https://render.com
+services:
+  - type: web
+    name: agri-mitra
+    runtime: python
+    region: singapore
+
+    buildCommand: pip install -r requirements.txt
+    startCommand: cd backend && gunicorn -w 1 -b 0.0.0.0:$PORT app:app
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: SECRET_KEY
+        generateValue: true
+      - key: OTP_DEMO
+        value: 1234
+      - key: MYSQL_HOST
+        sync: false
+      - key: MYSQL_USER
+        sync: false
+      - key: MYSQL_PASSWORD
+        sync: false
+      - key: MYSQL_DATABASE
+        value: agri_mitra
+      - key: PORT
+        value: 10000

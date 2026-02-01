@@ -1,6 +1,10 @@
-module.exports.synthesize = async (text, language = 'en') => {
-  // TODO: Integrate real TTS service (Google TTS, Azure, ElevenLabs)
-  // Currently returns null for frontend Web Speech API to handle
-  console.log(`🔊 TTS Synthesis: ${text.substring(0, 50)}... (${language})`);
-  return null;
+const fs = require('fs');
+const path = require('path');
+
+module.exports.synthesize = async (text, language) => {
+  // Integrate with Google TTS, Azure, or any TTS API
+  // For now, return a dummy audio file path
+  const dummyAudio = language === 'te' ? 'telugu-dummy.mp3' : 'english-dummy.mp3';
+  // Ensure you have these dummy files in the /audio folder
+  return dummyAudio;
 };

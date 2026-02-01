@@ -1,0 +1,210 @@
+/* ===============================
+   GLOBAL RESET & BASE
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #e8f5e9; /* Light field green */
+    color: #1b5e20;
+}
+
+/* ===============================
+   HEADER / NAVBAR
+================================ */
+.gov-header {
+    background: #2e7d32; /* Crop green */
+    color: #ffffff;
+    padding: 14px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gov-logo {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.gov-logo h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.gov-logo p {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.gov-nav a {
+    color: #e8f5e9;
+    margin-left: 18px;
+    text-decoration: none;
+    font-size: 14px;
+    padding-bottom: 4px;
+}
+
+.gov-nav a:hover,
+.gov-nav a.active {
+    border-bottom: 2px solid #a5d6a7;
+}
+
+/* ===============================
+   PAGE TITLE SECTION
+================================ */
+.page-title {
+    background: #ffffff;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 3px solid #a5d6a7;
+}
+
+.page-title h1 {
+    font-size: 28px;
+    color: #1b5e20;
+}
+
+.page-title p {
+    font-size: 14px;
+    color: #4e6f50;
+    margin-top: 8px;
+}
+
+/* ===============================
+   FERTILIZER SECTION
+================================ */
+.fertilizer-section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* ===============================
+   FERTILIZER CARDS
+================================ */
+.fertilizer-card {
+    background: #ffffff;
+    padding: 25px;
+    border-left: 6px solid #4caf50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fertilizer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.fertilizer-card h2 {
+    font-size: 20px;
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.fertilizer-card .desc {
+    font-size: 14px;
+    color: #3e5f42;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.fertilizer-card ul {
+    padding-left: 18px;
+    margin-bottom: 20px;
+}
+
+.fertilizer-card ul li {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #2f4f35;
+}
+
+/* ===============================
+   CARD FOOTER
+================================ */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.tag {
+    background: #a5d6a7;
+    color: #1b5e20;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.details-btn {
+    text-decoration: none;
+    color: #ffffff;
+    background: #2e7d32;
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: 3px;
+    transition: background 0.3s ease;
+}
+
+.details-btn:hover {
+    background: #1b5e20;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================ */
+@media (max-width: 768px) {
+    .gov-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .gov-nav {
+        margin-top: 10px;
+    }
+
+    .gov-nav a {
+        margin-left: 0;
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title h1 {
+        font-size: 22px;
+    }
+
+    .fertilizer-card h2 {
+        font-size: 18px;
+    }
+}
+.back-btn{
+position:fixed;
+top:18px;
+left:18px;
+width:45px;
+height:45px;
+border-radius:50%;
+border:none;
+background:#2e7d32;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 6px 14px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.1);
+background:#1b5e20;
+}

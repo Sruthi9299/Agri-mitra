@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Agri AI Assistant</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 3000px;
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(to bottom, #e9f7ef, #fdfefe);
+    }
+
+    /* Heading */
+    .heading {
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 32px;
+        font-weight: bold;
+        color: #2e7d32;
+    }
+
+    /* Floating chat container */
+    .chatbot {
+        position: fixed;
+        right: 30px;
+        bottom: 30px;
+        width: 320px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        overflow: hidden;
+        z-index: 999;
+    }
+
+    /* Header */
+    .chat-header {
+        background: #2e7d32;
+        color: white;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .chat-header img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: white;
+    }
+
+    .chat-header span {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    /* Messages area */
+    .chat-body {
+        padding: 15px;
+        background: #f4f7f5;
+        max-height: 260px;
+        overflow-y: auto;
+    }
+
+    .user-msg {
+        background: #c8e6c9;
+        padding: 8px 12px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: right;
+    }
+
+    .bot-msg-wrap { margin-bottom: 10px; }
+    .bot-msg {
+        background: #ffffff;
+        padding: 8px 12px;
+        border-radius: 12px;
+        font-size: 14px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .bot-msg-img {
+        display: block;
+        max-width: 100%;
+        width: 200px;
+        height: auto;
+        border-radius: 12px;
+        margin-top: 8px;
+    }
+
+    /* Input area */
+    .chat-input {
+        display: flex;
+        gap: 5px;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        background: white;
+        flex-wrap: wrap;
+    }
+
+    .chat-input input {
+        flex: 1;
+        min-width: 100px;
+        padding: 8px;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        outline: none;
+        font-size: 13px;
+    }
+
+    .chat-input select {
+        padding: 8px;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        background: white;
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    .chat-input button {
+        padding: 8px 12px;
+        border-radius: 20px;
+        border: none;
+        background: #2e7d32;
+        color: white;
+        cursor: pointer;
+        font-size: 13px;
+        transition: 0.3s;
+    }
+
+    .chat-input button:hover {
+        background: #256528;
+    }
+
+    .chat-input button:active {
+        transform: scale(0.95);
+    }
+
+    .recording {
+        background: #d32f2f !important;
+    }
+
+    /* Bot avatar bubble */
+    .bot-avatar {
+        position: fixed;
+        right: 370px;
+        bottom: 60px;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    .bot-avatar img {
+        width: 90%;
+        border-radius: 50%;
+    }
+
+    /* Ask bubble */
+    .ask-bubble {
+        position: fixed;
+        right: 500px;
+        bottom: 130px;
+        background: white;
+        padding: 10px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        color: #2e7d32;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .back-btn {
+        position: fixed;
+        top: 18px;
+        left: 18px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: none;
+        background: #2e7d32;
+        color: white;
+        font-size: 22px;
+        cursor: pointer;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+        transition: 0.3s;
+    }
+
+    .back-btn:hover {
+        transform: scale(1.1);
+        background: #1b5e20;
+    }
+
+    .loading {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #2e7d32;
+        animation: blink 1.4s infinite;
+    }
+
+    @keyframes blink {
+        0%, 20%, 50%, 80%, 100% { opacity: 1; }
+        40% { opacity: 0.3; }
+        60% { opacity: 0.5; }
+    }
+
+    .error-msg {
+        background: #ffcdd2;
+        color: #c62828;
+    }
+
+    @media (max-width: 600px) {
+        .bot-avatar, .ask-bubble {
+            display: none;
+        }
+        .chatbot {
+            width: 100%;
+            right: 0;
+            bottom: 0;
+            border-radius: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+ <a href="index.html"><button class="back-btn" onclick="history.back()">←</button></a>
+    
+<div class="heading">
+    🌱 Scroll the page – Your Agri Assistant is here!
+</div>
+
+<div class="ask-bubble">
+    Ask me about crops 🌾
+</div>
+
+<div class="bot-avatar">
+    <img src="https://png.pngtree.com/png-clipart/20250614/original/pngtree-cute-robot-3d-decoration-png-image_21191740.png" alt="Agri Bot">
+</div>
+
+<div class="chatbot">
+    <div class="chat-header">
+        <img src="https://png.pngtree.com/png-clipart/20250614/original/pngtree-cute-robot-3d-decoration-png-image_21191740.png" alt="Bot Avatar">
+        <span>Agri AI Bot</span>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+        <div class="bot-msg">👋 Hello! I'm your Agricultural Assistant. Ask me anything about farming!</div>
+    </div>
+
+    <div class="chat-input">
+        <input id="textInput" type="text" placeholder="Type a message...">
+        <select id="languageSelect">
+            <option value="en">🇬🇧 English</option>
+            <option value="te">🇮🇳 Telugu</option>
+            <option value="hi">🇮🇳 Hindi</option>
+            <option value="ta">🇮🇳 Tamil</option>
+            <option value="mr">🇮🇳 Marathi</option>
+            <option value="kn">🇮🇳 Kannada</option>
+        </select>
+        <button id="sendBtn" title="Send message">Send</button>
+        <button id="recBtn" title="Record audio">🎤</button>
+    </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+const API_BASE = window.API_BASE || 'http://localhost:5000';
+
+const chatBody = document.getElementById('chatBody');
+const sendBtn = document.getElementById('sendBtn');
+const textInput = document.getElementById('textInput');
+const recBtn = document.getElementById('recBtn');
+const languageSelect = document.getElementById('languageSelect');
+
+let mediaRecorder = null;
+let chunks = [];
+let isRecording = false;
+
+// Append user message
+function appendUser(msg) {
+  const el = document.createElement('div');
+  el.className = 'user-msg';
+  el.textContent = msg;
+  chatBody.appendChild(el);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Append bot message (optionally with imageUrl)
+function appendBot(msg, isError = false, imageUrl = null) {
+  const wrap = document.createElement('div');
+  wrap.className = 'bot-msg-wrap';
+  const el = document.createElement('div');
+  el.className = 'bot-msg';
+  if (isError) el.classList.add('error-msg');
+  el.textContent = msg;
+  wrap.appendChild(el);
+  if (imageUrl) {
+    const img = document.createElement('img');
+    img.src = imageUrl.startsWith('http') ? imageUrl : (API_BASE + (imageUrl.startsWith('/') ? '' : '/') + imageUrl);
+    img.alt = 'Agri context';
+    img.className = 'bot-msg-img';
+    wrap.appendChild(img);
+  }
+  chatBody.appendChild(wrap);
+  chatBody.scrollTop = chatBody.scrollHeight;
+  return wrap;
+}
+
+// Show loading indicator
+function showLoading() {
+  const el = document.createElement('div');
+  el.className = 'bot-msg';
+  el.innerHTML = '<span class="loading"></span> <span class="loading"></span> <span class="loading"></span>';
+  chatBody.appendChild(el);
+  chatBody.scrollTop = chatBody.scrollHeight;
+  return el;
+}
+
+// Send text to API
+async function sendText(text, lang) {
+  if (!text.trim()) return;
+  
+  appendUser(text);
+  textInput.value = '';
+  sendBtn.disabled = true;
+  
+  const loadingEl = showLoading();
+
+  try {
+    const response = await fetch(`${API_BASE}/api/ask`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, language: lang })
+    });
+
+    const data = await response.json();
+    
+    loadingEl.remove();
+    
+    if (response.ok) {
+      appendBot(data.text, false, data.imageUrl || null);
+      
+      // Play audio if server provided it
+      if (data.audioUrl) {
+        new Audio(`${API_BASE}${data.audioUrl}`).play().catch(e => console.log('Audio play error:', e));
+      } else {
+        // Use browser TTS
+        speakText(data.text, lang);
+      }
+    } else {
+      appendBot(`Error: ${data.error || 'Unknown error'}`, true);
+    }
+  } catch (err) {
+    loadingEl.remove();
+    appendBot(`Network error: ${err.message}`, true);
+    console.error(err);
+  } finally {
+    sendBtn.disabled = false;
+  }
+}
+
+// Browser TTS
+function speakText(text, lang) {
+  if (!('speechSynthesis' in window)) {
+    console.log('Speech Synthesis not supported');
+    return;
+  }
+
+  const utter = new SpeechSynthesisUtterance(text);
+  const langMap = { en: 'en-US', te: 'te-IN', hi: 'hi-IN', ta: 'ta-IN', mr: 'mr-IN', kn: 'kn-IN' };
+  utter.lang = langMap[lang] || 'en-US';
+  utter.rate = 1;
+  utter.pitch = 1;
+  
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utter);
+}
+
+// Send button click
+sendBtn.addEventListener('click', () => {
+  const text = textInput.value.trim();
+  const lang = languageSelect.value;
+  sendText(text, lang);
+});
+
+// Enter key to send
+textInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    const text = textInput.value.trim();
+    const lang = languageSelect.value;
+    sendText(text, lang);
+  }
+});
+
+// Recording functionality
+recBtn.addEventListener('click', async () => {
+  if (isRecording && mediaRecorder && mediaRecorder.state === 'recording') {
+    // Stop recording
+    mediaRecorder.stop();
+    isRecording = false;
+    recBtn.classList.remove('recording');
+    recBtn.textContent = '🎤';
+    return;
+  }
+
+  // Start recording
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    chunks = [];
+
+    mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+
+    mediaRecorder.onstop = async () => {
+      const blob = new Blob(chunks, { type: 'audio/webm' });
+      await sendAudio(blob);
+      
+      // Stop all tracks
+      stream.getTracks().forEach(track => track.stop());
+    };
+
+    mediaRecorder.start();
+    isRecording = true;
+    recBtn.classList.add('recording');
+    recBtn.textContent = '⏹️';
+  } catch (err) {
+    appendBot(`Microphone error: ${err.message}`, true);
+    console.error(err);
+  }
+});
+
+// Send audio to API
+async function sendAudio(blob) {
+  appendUser('🎤 (audio message)');
+  sendBtn.disabled = true;
+  recBtn.disabled = true;
+
+  const loadingEl = showLoading();
+
+  try {
+    const form = new FormData();
+    form.append('audio', blob, 'recording.webm');
+    form.append('language', languageSelect.value);
+
+    const response = await fetch(`${API_BASE}/api/ask`, {
+      method: 'POST',
+      body: form
+    });
+
+    const data = await response.json();
+    
+    loadingEl.remove();
+
+    if (response.ok) {
+      appendBot(data.text, false, data.imageUrl || null);
+      
+      if (data.audioUrl) {
+        new Audio(`${API_BASE}${data.audioUrl}`).play().catch(e => console.log('Audio play error:', e));
+      } else {
+        speakText(data.text, languageSelect.value);
+      }
+    } else {
+      appendBot(`Error: ${data.error || 'Unknown error'}`, true);
+    }
+  } catch (err) {
+    loadingEl.remove();
+    appendBot(`Network error: ${err.message}`, true);
+    console.error(err);
+  } finally {
+    sendBtn.disabled = false;
+    recBtn.disabled = false;
+  }
+}
+
+console.log('AI Chat initialized. Backend API: ' + API_BASE);
+</script>
+
+</body>
+</html>

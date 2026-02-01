@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Agri Mitra</title>
+
+<link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <!-- MENU -->
+    <div class="menu-btn" onclick="openMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- LOGO -->
+   <div class="logo-container">
+       
+      <div class="logo">
+    <img src=" https://png.pngtree.com/png-clipart/20250614/original/pngtree-cute-robot-3d-decoration-png-image_21191740.png"alt="Agri Mitra Logo">
+
+    </div>
+     </div><h2 >Agri Mitra</h2> 
+       
+
+    <!-- RIGHT -->
+    <div class="right-nav">
+        <p class="para-hello">Hello, <span id="username">Farmer</span></p>
+       <a href="farmer.html"> <button class="login">Login</button></a>
+       <a href="user.html"><button class="profile">Profile</button></a>
+    </div>
+
+</nav>
+
+
+<!-- ================= SIDE MENU ================= -->
+
+<div class="side-menu" id="menu">
+
+    <div class="close-btn" onclick="closeMenu()">✕</div>
+
+    <ul>
+      <a href="gov.html">  <li>Government Schemes</li></a>
+       <a href="market.html"> <li>Marketing</li></a>
+       <a href="fertilizers.html"> <li>Fertilizers</li></a>
+     <a href="contact.html">  <li>Contact Support</li></a>
+    </ul>
+
+</div>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-text">
+        <h1>Smart Farming With Agri Mitra </h1>
+        <p>
+            Boost productivity with crop intelligence,
+            disease detection, weather alerts,
+            and AI-powered farming assistance.
+        </p>
+
+      <a href="ai.html"> <button class="cta">Explore Now</button></a>
+    </div>
+
+
+    <!-- AI BOT -->
+   <a href="ai.html"> <div class="ai-bot">
+
+        <div class="waves"></div>
+        <div class="waves delay"></div>
+
+        <div class="bot">
+             <img src="https://png.pngtree.com/png-clipart/20250614/original/pngtree-cute-robot-3d-decoration-png-image_21191740.png" id="aiBot" alt="AI Bot">
+   
+        </div>
+
+    </div>
+</a>
+</section>
+
+
+
+<!-- ================= CARDS ================= -->
+
+<section class="cards-section">
+
+    <h2 class="section-title">Our Smart Services</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">🦠</div>
+            <h3>Crop Diseases</h3>
+            <p>Upload crop images to identify diseases and get instant solutions.</p>
+           <a href="diseases.html"> <button>Detect</button></a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🌱 </div>
+            <h3>Soil Tips</h3>
+            <p>Analyze soil quality and receive fertilizer recommendations.</p>
+          <a href="soil.html"><button>Analyze</button></a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🌦️</div>
+            <h3>Weather Tips</h3>
+            <p>Weather-based smart farming suggestions and alerts.</p>
+           <a href="wether.html"> <button>View</button></a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🌾 </div>
+            <h3>Crop Info</h3>
+            <p>Complete crop guide including season, yield, and care.</p>
+          <a href="crop.html"> <button>Learn </button></a>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script src="config.js"></script>
+<script src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farmer Crop Disease Detector</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(to bottom, #e8f5e9, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 95%;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 20px;
+  animation: fadeIn 1s ease;
+}
+
+h1 {
+  text-align: center;
+  color: #2e7d32;
+}
+
+.upload-area {
+  border: 2px dashed #81c784;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.upload-area input {
+  display: none;
+}
+
+.btn {
+  background: #43a047;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 8px;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.btn:hover {
+  background: #2e7d32;
+  transform: scale(1.05);
+}
+
+.preview {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.preview img {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 12px;
+  animation: zoomIn 0.6s ease;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f1f8e9;
+  border-radius: 10px;
+  display: none;
+}
+
+.result h3 {
+  color: #1b5e20;
+}
+
+.voice-btn {
+  background: #ff9800;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  h1 { font-size: 20px; }
+  .btn { width: 100%; }
+}
+.back-btn{
+position:fixed;
+top:18px;
+left:18px;
+width:45px;
+height:45px;
+border-radius:50%;
+border:none;
+background:#2e7d32;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 6px 14px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.1);
+background:#1b5e20;
+}
+</style>
+</head>
+
+<body>
+<a href="index.html"><button class="back-btn" onclick="history.back()">←</button></a>
+<div class="container">
+  <h1>🌾 Crop Disease Detection</h1>
+
+  <div class="upload-area">
+    <p>Upload or Capture Crop Image</p>
+
+    <label class="btn">
+      📁 Upload Image
+      <input type="file" accept="image/*" onchange="previewImage(event)">
+    </label>
+
+    <button class="btn" onclick="openCamera()">📷 Open Camera</button>
+  </div>
+
+  <div class="preview" id="preview"></div>
+
+  <div class="result" id="result">
+    <h3 id="diseaseName"></h3>
+    <p id="diseaseInfo"></p>
+    <button class="btn voice-btn" onclick="speak()">🔊 Listen (Voice)</button>
+  </div>
+</div>
+
+<script>
+let generatedText = "";
+
+function previewImage(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    document.getElementById("preview").innerHTML =
+      `<img src="${reader.result}">`;
+    detectDisease();
+  };
+  reader.readAsDataURL(file);
+}
+
+function openCamera() {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = "image/*";
+  input.capture = "environment";
+  input.onchange = previewImage;
+  input.click();
+}
+
+function detectDisease() {
+  // Mock AI result
+  const diseases = [
+    {
+      name: "Leaf Blight",
+      info: "Leaf blight is a common crop disease caused by fungal infection. Symptoms include yellowing and drying of leaves. Farmers are advised to use fungicides and ensure proper water drainage."
+    },
+    {
+      name: "Powdery Mildew",
+      info: "Powdery mildew appears as white powder on leaves. It reduces crop yield. Spray neem oil or sulfur-based fungicides for control."
+    },
+    {
+      name: "Healthy Crop",
+      info: "The crop appears healthy with no visible disease symptoms. Maintain proper irrigation and nutrient management."
+    }
+  ];
+
+  const selected = diseases[Math.floor(Math.random() * diseases.length)];
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("diseaseName").innerText = "🦠 Disease: " + selected.name;
+  document.getElementById("diseaseInfo").innerText = selected.info;
+
+  generatedText = `Attention farmer. ${selected.name}. ${selected.info}`;
+}
+
+function speak() {
+  const speech = new SpeechSynthesisUtterance(generatedText);
+  speech.lang = "en-IN";
+  speech.rate = 0.9;
+  speech.pitch = 1;
+  window.speechSynthesis.speak(speech);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Crops Information | AgriMitra</title>
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f1f8f2;
+margin-top:80px;
+}
+
+/* NAVBAR */
+
+.top-bar{
+position:fixed;
+top:0;
+width:100%;
+height:70px;
+background:#2e7d32;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 40px;
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
+z-index:999;
+}
+
+.left{
+flex:1;
+}
+
+.back-btn{
+font-size:28px;
+color:white;
+cursor:pointer;
+transition:.3s;
+}
+
+.back-btn:hover{
+transform:translateX(-6px);
+}
+
+.center{
+flex:1;
+display:flex;
+justify-content:center;
+color:white;
+font-size:22px;
+font-weight:bold;
+}
+
+.right{
+flex:1;
+display:flex;
+justify-content:flex-end;
+color:white;
+font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:40px 20px 10px;
+}
+
+.hero h1{
+font-size:40px;
+color:#1b5e20;
+}
+
+.hero p{
+color:#666;
+margin-top:10px;
+font-size:18px;
+}
+
+/* GRID */
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+/* CARD */
+
+.card{
+background:white;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 8px 22px rgba(0,0,0,0.08);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-12px);
+box-shadow:0 18px 40px rgba(0,0,0,0.18);
+}
+
+/* IMAGE */
+
+.card img{
+width:100%;
+height:190px;
+object-fit:cover;
+}
+
+/* CONTENT */
+
+.card-content{
+padding:20px;
+}
+
+.card-content h3{
+color:#2e7d32;
+margin-bottom:10px;
+}
+
+.card-content p{
+color:#666;
+line-height:1.5;
+}
+
+/* TAG */
+
+.tag{
+display:inline-block;
+margin-top:10px;
+background:#e8f5e9;
+color:#2e7d32;
+padding:6px 12px;
+border-radius:8px;
+font-weight:600;
+font-size:14px;
+}
+
+/* BUTTON */
+
+.btn{
+margin-top:15px;
+padding:10px 18px;
+border:none;
+background:#2e7d32;
+color:white;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+background:#1b5e20;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:30px;
+}
+
+}
+.back-btn{
+position:fixed;
+top:18px;
+left:18px;
+width:45px;
+height:45px;
+border-radius:50%;
+border:none;
+background:#2e7d32;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 6px 14px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.1);
+background:#1b5e20;
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<header class="top-bar">
+
+<div class="left">
+<a href="index.html"><button class="back-btn" onclick="history.back()">←</button></a>
+</div>
+
+<div class="center">
+🌾 AgriMitra Crops Guide
+</div>
+
+<div class="right">
+Hello Farmer
+</div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+<h1>Crop Information Center</h1>
+<p>Select the right crop with smart insights to maximize yield.</p>
+</section>
+
+
+
+<!-- CROPS GRID -->
+
+<div class="container">
+
+<!-- RICE -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9">
+<div class="card-content">
+<h3>Rice</h3>
+<p>Rice requires high water supply and thrives in clayey soil. Ideal for regions with heavy rainfall.</p>
+<span class="tag">Season: Kharif</span><br>
+<button class="btn">View Details</button>
+</div>
+</div>
+
+<!-- WHEAT -->
+<div class="card">
+<img src="https://wallpaperaccess.com/full/279476.jpg">
+<div class="card-content">
+<h3>Wheat</h3>
+<p>Best grown in well-drained loamy soil with cool growing season and bright sunshine.</p>
+<span class="tag">Season: Rabi</span><br>
+<button class="btn">View Details</button>
+</div>
+</div>
+
+<!-- MAIZE -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076">
+<div class="card-content">
+<h3>Maize (Corn)</h3>
+<p>Requires moderate rainfall and fertile soil rich in organic matter.</p>
+<span class="tag">Season: Kharif</span><br>
+<button class="btn">View Details</button>
+</div>
+</div>
+
+<!-- SUGARCANE -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449">
+<div class="card-content">
+<h3>Sugarcane</h3>
+<p>A long-duration crop needing warm climate and high humidity.</p>
+<span class="tag">Duration: 10-18 Months</span><br>
+<button class="btn">View Details</button>
+</div>
+</div>
+
+<!-- COTTON -->
+<div class="card">
+<img src="https://static.vecteezy.com/system/resources/thumbnails/037/996/577/small_2x/ai-generated-cotton-flower-branch-on-nature-photo.jpg">
+<div class="card-content">
+<h3>Cotton</h3>
+<p>Grows well in black soil with warm temperatures and low humidity.</p>
+<span class="tag">Soil: Black Soil</span><br>
+<button class="btn">View Details</button>
+</div>
+</div>
+
+<!-- TOMATO -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea">
+<div class="card-content">
+<h3>Tomato</h3>
+<p>Needs well-drained sandy loam soil and consistent watering.</p>
+<span class="tag">Temperature: 20–30°C</span><br>
+<button class="btn">View Details</button>
+</div>
+</div>
+
+</div>
+
+
+</body>
+</html>

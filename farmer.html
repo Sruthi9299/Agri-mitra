@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farmer Portal Auth</title>
+<link rel="stylesheet" href="farmer.css">
+</head>
+<body>
+
+<a href="index.html"><button class="back-btn" onclick="history.back()">←</button></a>
+
+
+<div class="container">
+
+    <div class="toggle">
+        <button id="loginTab" class="active">Login</button>
+        <button id="registerTab">Register</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form id="loginForm">
+        <h2>Login</h2>
+
+        <input type="text" id="loginUserName" name="user_name" placeholder="User Name (optional)">
+        <input type="tel" id="loginPhone" name="phone" placeholder="Phone Number" maxlength="10" required>
+
+        <button type="button" onclick="sendOTP('login')">Send OTP</button>
+
+        <input type="text" id="loginOtp" name="otp" placeholder="Enter OTP" style="display:none;">
+        <button type="submit" id="loginBtn" style="display:none;">Verify & Login</button>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form id="registerForm" style="display:none;">
+        <h2>Register</h2>
+
+        <input type="text" id="regFullName" name="full_name" placeholder="Full Name" required>
+        <input type="tel" id="regPhone" name="phone" placeholder="Phone Number" maxlength="10" required>
+
+        <button type="button" onclick="sendOTP('register')">Send OTP</button>
+
+        <input type="text" id="registerOtp" name="otp" placeholder="Enter OTP" style="display:none;">
+
+        <input type="number" id="age" name="age" placeholder="Age" required>
+        <input type="date" id="dob" name="dob" required>
+
+        <select id="regLanguage" name="preferred_language" required>
+            <option value="">Select Language</option>
+            <option value="Telugu">Telugu</option>
+            <option value="Hindi">Hindi</option>
+            <option value="English">English</option>
+            <option value="Tamil">Tamil</option>
+        </select>
+
+        <input type="hidden" id="regLocation" name="location" value="">
+        <input type="hidden" id="regSoilType" name="soil_type" value="">
+        <button type="button" onclick="openMap()">Select Location & Soil Type</button>
+
+        <button type="submit" id="registerBtn" style="display:none;">Register</button>
+    </form>
+
+</div>
+
+<script src="config.js"></script>
+<script src="farmer.js"></script>
+</body>
+</html>

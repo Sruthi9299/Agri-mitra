@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AgriMitra – Marketing</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(#e8f5e9,#c8e6c9);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.hidden{display:none;}
+
+.container{
+    width:90%;
+    max-width:420px;
+    text-align:center;
+}
+
+/* HEADER */
+.header{
+    background:#2e7d32;
+    color:white;
+    padding:15px;
+    border-radius:12px 12px 0 0;
+    font-size:20px;
+}
+
+/* BUTTONS */
+.buttons{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+button{
+    padding:14px;
+    border:none;
+    border-radius:25px;
+    background:#2e7d32;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{background:#1b5e20}
+
+.back{
+    background:#555;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    margin-top:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+/* VEGETABLE LIST */
+.veg{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+}
+.veg img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:10px;
+}
+select{
+    padding:6px;
+    border-radius:6px;
+    margin-top:5px;
+}
+
+.total{
+    font-weight:bold;
+    margin-top:5px;
+    color:#2e7d32;
+}
+
+/* DEALERS */
+.dealer{
+    background:#f1f8e9;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:10px;
+    text-align:left;
+}
+.back-btn{
+position:fixed;
+top:18px;
+left:18px;
+width:45px;
+height:45px;
+border-radius:50%;
+border:none;
+background:#2e7d32;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 6px 14px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.1);
+background:#1b5e20;
+}
+</style>
+</head>
+
+<body>
+<a href="index.html"><button class="back-btn" onclick="history.back()">←</button></a>
+<div class="container">
+
+<!-- ========== MARKETING HOME ========== -->
+<div id="marketingHome">
+    <div class="header">Marketing</div>
+    <div class="buttons">
+        <button onclick="openPrices()">💰 Market Prices</button>
+        <button onclick="openDealers()">📞 Direct Dealers</button>
+    </div>
+</div>
+
+<!-- ========== PRICES PAGE ========== -->
+<div id="prices" class="hidden">
+    <div class="header">Today’s Market Prices</div>
+
+    <!-- TOMATO -->
+    <div class="card veg">
+        <img src="https://i.imgur.com/9N3YH6G.jpg">
+        <div>
+            Tomato – ₹30 / kg<br>
+            <select onchange="calcTotal(this,30,'tTotal')">
+                <option value="1">1 kg</option>
+                <option value="2">2 kg</option>
+                <option value="3">3 kg</option>
+                <option value="4">4 kg</option>
+                <option value="5">5 kg</option>
+            </select>
+            <div class="total" id="tTotal">Total: ₹30</div>
+        </div>
+    </div>
+
+    <!-- ONION -->
+    <div class="card veg">
+        <img src="https://i.imgur.com/6XbJZ3p.jpg">
+        <div>
+            Onion – ₹25 / kg<br>
+            <select onchange="calcTotal(this,25,'oTotal')">
+                <option value="1">1 kg</option>
+                <option value="2">2 kg</option>
+                <option value="3">3 kg</option>
+                <option value="4">4 kg</option>
+                <option value="5">5 kg</option>
+            </select>
+            <div class="total" id="oTotal">Total: ₹25</div>
+        </div>
+    </div>
+
+    <!-- POTATO -->
+    <div class="card veg">
+        <img src="https://i.imgur.com/Qs7K5Vh.jpg">
+        <div>
+            Potato – ₹20 / kg<br>
+            <select onchange="calcTotal(this,20,'pTotal')">
+                <option value="1">1 kg</option>
+                <option value="2">2 kg</option>
+                <option value="3">3 kg</option>
+                <option value="4">4 kg</option>
+                <option value="5">5 kg</option>
+            </select>
+            <div class="total" id="pTotal">Total: ₹20</div>
+        </div>
+    </div>
+
+    <button class="back" onclick="goHome()">⬅ Back</button>
+</div>
+
+<!-- ========== DEALERS PAGE ========== -->
+<div id="dealers" class="hidden">
+    <div class="header">Direct Dealers (No Brokers)</div>
+
+    <div class="dealer">
+        <strong>Ramesh Traders</strong><br>
+        📍 Guntur<br>
+        📞 9876543210
+    </div>
+
+    <div class="dealer">
+        <strong>Green Market Yard</strong><br>
+        📍 Vijayawada<br>
+        📞 9123456780
+    </div>
+
+    <div class="dealer">
+        <strong>Fresh Farm Buyers</strong><br>
+        📍 Nellore<br>
+        📞 9988776655
+    </div>
+
+    <button class="back" onclick="goHome()">⬅ Back</button>
+</div>
+
+</div>
+
+<script>
+function hideAll(){
+    marketingHome.classList.add("hidden");
+    prices.classList.add("hidden");
+    dealers.classList.add("hidden");
+}
+
+function goHome(){
+    hideAll();
+    marketingHome.classList.remove("hidden");
+}
+
+function openPrices(){
+    hideAll();
+    prices.classList.remove("hidden");
+}
+
+function openDealers(){
+    hideAll();
+    dealers.classList.remove("hidden");
+}
+
+/* CORRECT KG CALCULATION */
+function calcTotal(select, pricePerKg, outputId){
+    const kg = parseInt(select.value);
+    const total = kg * pricePerKg;
+    document.getElementById(outputId).innerText = "Total: ₹" + total;
+}
+</script>
+
+</body>
+</html>

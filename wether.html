@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Weather Alerts | AgriMitra</title>
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#eef7ee;
+}
+
+/* NAVBAR */
+
+.navbar{
+height:70px;
+background:#2e7d32;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+font-weight:bold;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:50px 20px;
+}
+
+.hero h1{
+color:#1b5e20;
+font-size:40px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#555;
+font-size:18px;
+}
+
+/* WEATHER BOX */
+
+.weather-box{
+max-width:900px;
+margin:30px auto;
+background:white;
+border-radius:18px;
+padding:30px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+display:flex;
+align-items:center;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:20px;
+transition:.3s;
+}
+
+.weather-box:hover{
+transform:translateY(-6px);
+}
+
+.temp{
+font-size:52px;
+font-weight:bold;
+color:#2e7d32;
+}
+
+.condition{
+font-size:20px;
+color:#666;
+}
+
+/* ALERT */
+
+.alert{
+max-width:900px;
+margin:20px auto;
+background:#fff3cd;
+color:#856404;
+padding:18px;
+border-radius:12px;
+font-weight:600;
+box-shadow:0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* GRID */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:28px;
+}
+
+/* CARD */
+
+.card{
+background:white;
+padding:25px;
+border-radius:16px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+transition:.35s;
+position:relative;
+overflow:hidden;
+}
+
+.card::top{
+content:"";
+position:absolute;
+height:5px;
+width:100%;
+background:#66bb6a;
+top:0;
+left:0;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 14px 28px rgba(0,0,0,0.15);
+}
+
+.card h3{
+color:#2e7d32;
+margin-bottom:10px;
+}
+
+.card p{
+color:#666;
+line-height:1.5;
+}
+
+/* OFFICIAL SECTION */
+
+.official{
+max-width:1100px;
+margin:40px auto;
+background:linear-gradient(135deg,#2e7d32,#66bb6a);
+color:white;
+padding:35px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.official button{
+margin-top:15px;
+padding:12px 26px;
+border:none;
+border-radius:10px;
+background:white;
+color:#2e7d32;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.official button:hover{
+transform:scale(1.07);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:30px;
+}
+
+.temp{
+font-size:40px;
+}
+
+}
+.back-btn{
+position:fixed;
+top:18px;
+left:18px;
+width:45px;
+height:45px;
+border-radius:50%;
+border:none;
+background:#2e7d32;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 6px 14px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.1);
+background:#1b5e20;
+}
+</style>
+</head>
+
+
+<body>
+<a href="index.html"><button class="back-btn" onclick="history.back()">←</button></a>
+<div class="navbar">
+🌦 AgriMitra Weather Intelligence
+</div>
+
+
+<section class="hero">
+<h1>Weather Tips for Farmers</h1>
+<p>Plan smarter farming activities based on real-time weather guidance.</p>
+</section>
+
+
+<!-- WEATHER BOX -->
+
+<div class="weather-box">
+
+<div>
+<div class="temp" id="temp">28°C</div>
+<div class="condition" id="condition">Partly Cloudy</div>
+</div>
+
+<div>
+<h3>Recommended Activity</h3>
+<p id="activity">Good day for irrigation and fertilizer application.</p>
+</div>
+
+</div>
+
+
+<!-- ALERT -->
+
+<div class="alert" id="alert">
+⚠ Light rain expected in the evening. Avoid pesticide spraying.
+</div>
+
+
+
+<!-- TIPS GRID -->
+
+<div class="container">
+
+<div class="card">
+<h3>🌧 Rainy Weather</h3>
+<p>Ensure proper drainage to prevent waterlogging. Delay harvesting to avoid crop damage.</p>
+</div>
+
+<div class="card">
+<h3>☀ Hot Weather</h3>
+<p>Irrigate crops early morning or late evening to reduce evaporation.</p>
+</div>
+
+<div class="card">
+<h3>💨 Wind Alerts</h3>
+<p>Support tall crops and greenhouse structures to prevent wind damage.</p>
+</div>
+
+<div class="card">
+<h3>❄ Cold Conditions</h3>
+<p>Use mulching to maintain soil temperature and protect seedlings.</p>
+</div>
+
+<div class="card">
+<h3>🌱 Humidity Control</h3>
+<p>Monitor fungal diseases when humidity is high.</p>
+</div>
+
+<div class="card">
+<h3>🚜 Smart Planning</h3>
+<p>Check forecasts daily before fertilizer spraying or harvesting.</p>
+</div>
+
+</div>
+
+
+
+<!-- OFFICIAL ACCESS -->
+
+<div class="official">
+
+<h2>Official Government Weather Access</h2>
+
+<p>
+Get accurate agricultural forecasts directly from the Indian Meteorological Department (IMD).
+</p>
+
+<button onclick="openIMD()">Open Official Weather Portal</button>
+
+</div>
+
+
+
+<script>
+
+/* FAKE SMART WEATHER (Demo Logic) */
+
+const weatherData = [
+{
+temp:"32°C",
+condition:"Sunny",
+activity:"Ideal for harvesting and drying grains.",
+alert:"⚠ High temperature today. Ensure proper irrigation."
+},
+{
+temp:"26°C",
+condition:"Cloudy",
+activity:"Perfect weather for sowing and transplanting.",
+alert:"☁ Cloud cover detected. Monitor crops for pests."
+},
+{
+temp:"22°C",
+condition:"Rainy",
+activity:"Avoid fertilizer and pesticide spraying.",
+alert:"🌧 Heavy rain expected. Protect stored crops."
+}
+];
+
+const randomWeather = weatherData[Math.floor(Math.random()*weatherData.length)];
+
+document.getElementById("temp").innerText = randomWeather.temp;
+document.getElementById("condition").innerText = randomWeather.condition;
+document.getElementById("activity").innerText = randomWeather.activity;
+document.getElementById("alert").innerText = randomWeather.alert;
+
+
+/* OFFICIAL LINK */
+
+function openIMD(){
+window.open("https://mausam.imd.gov.in","_blank");
+}
+
+</script>
+
+</body>
+</html>

@@ -1,2 +1,26 @@
-# Created by venv; see https://docs.python.org/3/library/venv.html
-*
+# Env & secrets
+.env
+.env.local
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+venv/
+.venv/
+*.egg-info/
+.eggs/
+
+# Backend uploads
+backend/uploads/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

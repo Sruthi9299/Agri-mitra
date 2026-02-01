@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AgriMitra Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI,sans-serif;
+}
+
+body{
+  background:#f3f6e8;
+}
+
+/* HEADER */
+header{
+  background:#5e8f4e;
+  color:white;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:22px;
+  font-weight:600;
+}
+
+/* LAYOUT */
+.container{
+  max-width:1100px;
+  margin:20px auto;
+  padding:0 15px;
+}
+
+.card{
+  background:#f0f6df;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+/* FARMER */
+.farmer-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.profile-img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:4px solid #cfe3b3;
+  object-fit:cover;
+}
+
+/* BUTTONS */
+.section-btn{
+  background:#5e8f4e;
+  color:white;
+  padding:10px 26px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.section-btn:hover{
+  background:#4d7c41;
+}
+
+/* DESCRIPTION */
+.desc-box{
+  display:none;
+  margin-top:10px;
+}
+
+/* UPLOAD BOXES */
+.upload-box{
+  border-radius:12px;
+  padding:25px;
+  text-align:center;
+  font-weight:600;
+}
+
+.upload-view{
+  border:2px dashed #9bb97c;
+  background:#f7faee;
+  color:#5e8f4e;
+}
+
+.upload-action{
+  background:#7fb069;
+  color:white;
+  cursor:pointer;
+}
+
+.upload-action:hover{
+  background:#6aa556;
+}
+
+input[type=file]{
+  display:none;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+
+.gallery img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .farmer-card{flex-direction:column;text-align:center}
+  .grid{grid-template-columns:1fr}
+}
+.back-btn{
+position:fixed;
+top:18px;
+left:18px;
+width:45px;
+height:45px;
+border-radius:50%;
+border:none;
+background:#2e7d32;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 6px 14px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.1);
+background:#1b5e20;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html"><button class="back-btn" onclick="history.back()">←</button></a>
+    
+</header>
+
+<div class="container">
+
+<!-- FARMER DETAILS -->
+<div class="card farmer-card">
+  <div>
+    <h2 style="color:#3f6b35">Farmer Details</h2><br>
+    <p><b>Name:</b> <span id="profileName">—</span></p>
+    <p><b>Location:</b> <span id="profileLocation">—</span></p>
+    <p><b>Land Size:</b> <span id="profileLandSize">—</span></p>
+    <p><b>Experience:</b> <span id="profileExperience">—</span></p>
+  </div>
+
+  <img id="profileImg" src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6"
+       class="profile-img" alt="Profile">
+</div>
+
+<!-- CROP DETAILS + DESCRIPTION -->
+<div class="grid">
+
+  <div class="card">
+    <button class="section-btn">Crop Details</button>
+    <p><b>Crop:</b> <span id="cropName">—</span></p>
+    <p><b>Sowing Date:</b> <span id="cropSowingDate">—</span></p>
+    <p><b>Stage:</b> <span id="cropStage">—</span></p>
+  </div>
+
+  <div class="card">
+    <button class="section-btn" onclick="toggleDesc()">Crop Description</button>
+    <div class="desc-box" id="descBox">
+      <ul style="margin-left:20px" id="cropDescList">
+        <li>—</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- DAILY UPDATES -->
+<div class="card">
+  <h2 style="color:#3f6b35;margin-bottom:15px">Daily Crop Updates</h2>
+
+  <div class="grid">
+
+    <!-- ALREADY UPLOADED (VIEW ONLY) -->
+    <div class="upload-box upload-view">
+      📷 Already Uploaded Photos
+    </div>
+
+    <!-- UPLOAD NEW -->
+    <label class="upload-box upload-action">
+      ➕ Upload New Photo
+      <input type="file" accept="image/*" onchange="addPhoto(event)">
+    </label>
+
+  </div>
+</div>
+
+<!-- PHOTO GALLERY -->
+<div class="card">
+  <h2 style="color:#3f6b35;margin-bottom:15px">Uploaded Photos</h2>
+
+  <div class="gallery" id="gallery">
+    <!-- Loaded from API or defaults -->
+  </div>
+</div>
+
+</div>
+
+<script src="config.js"></script>
+<script>
+const API_BASE = window.API_BASE || 'http://localhost:5000';
+
+function toggleDesc(){
+  const box = document.getElementById("descBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function addPhoto(event){
+  const file = event.target.files[0];
+  if(!file) return;
+
+  const gallery = document.getElementById("gallery");
+  const img = document.createElement("img");
+  img.src = URL.createObjectURL(file);
+  gallery.appendChild(img);
+}
+
+// Load profile from backend
+(async function loadProfile() {
+  const token = localStorage.getItem('agri_token');
+  if (!token) {
+    document.getElementById('profileName').textContent = 'Login to see profile';
+    return;
+  }
+  try {
+    const res = await fetch(API_BASE + '/api/profile', {
+      headers: { 'Authorization': 'Bearer ' + token, 'X-Token': token }
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      document.getElementById('profileName').textContent = data.error || 'Error loading profile';
+      return;
+    }
+    const f = data.farmer || {};
+    document.getElementById('profileName').textContent = f.name || '—';
+    document.getElementById('profileLocation').textContent = f.location || '—';
+    document.getElementById('profileLandSize').textContent = f.land_size || '—';
+    document.getElementById('profileExperience').textContent = f.experience || '—';
+    const imgEl = document.getElementById('profileImg');
+    if (f.profile_image_url) imgEl.src = f.profile_image_url;
+
+    const c = data.crop || {};
+    document.getElementById('cropName').textContent = c.crop || '—';
+    document.getElementById('cropSowingDate').textContent = c.sowing_date || '—';
+    document.getElementById('cropStage').textContent = c.stage || '—';
+    const list = document.getElementById('cropDescList');
+    if (c.description_points && c.description_points.length) {
+      list.innerHTML = c.description_points.map(function(x) { return '<li>' + (x || '').trim() + '</li>'; }).join('');
+    } else {
+      list.innerHTML = '<li>—</li>';
+    }
+
+    const gallery = document.getElementById('gallery');
+    gallery.innerHTML = '';
+    (data.photos || []).forEach(function(url) {
+      const img = document.createElement('img');
+      img.src = url.startsWith('http') ? url : (API_BASE + (url.startsWith('/') ? '' : '/') + url);
+      gallery.appendChild(img);
+    });
+  } catch (e) {
+    document.getElementById('profileName').textContent = 'Error loading profile';
+  }
+})();
+</script>
+
+</body>
+</html>

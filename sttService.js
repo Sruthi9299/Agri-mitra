@@ -1,8 +1,5 @@
-module.exports.transcribe = async (filePath, language = 'en') => {
-  // TODO: Integrate real STT service (Whisper, AssemblyAI, Google Cloud Speech-to-Text)
-  // For now, return a placeholder
-  console.log(`📁 Audio file received: ${filePath} (language=${language})`);
-  return language === 'te' 
-    ? 'నమస్కారం, మీ ప్రశ్న గురించి చెప్పండి' 
-    : 'Hello, please ask your question';
+module.exports.transcribe = async (audioPath, language) => {
+  // Integrate with Google Speech-to-Text, Azure, or any STT API
+  // For now, return dummy text
+  return language === 'te' ? 'మీరు ఏమి అడిగారు?' : 'What did you ask?';
 };

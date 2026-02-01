@@ -1,47 +1,34 @@
 const axios = require('axios');
 
-const OPENROUTER_API_KEY = process.env.VITE_OPENROUTER_API_KEY;
-
-if (!OPENROUTER_API_KEY) {
-  console.error('❌ VITE_OPENROUTER_API_KEY not set in .env');
-}
-
-module.exports.getResponse = async (userText, language = 'en') => {
+async function getResponse(text, language) {
   try {
-    const systemPrompt = `You are an agricultural assistant for Indian farmers. Provide helpful, practical advice about farming, crops, and agriculture. If the user asks in Telugu, reply in Telugu. If in English, reply in English. Keep responses concise and actionable.`;
-
-    const messages = [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: userText }
-    ];
-
-    const resp = await axios.post(
+    const response = await axios.post(
       'https://openrouter.ai/api/v1/chat/completions',
       {
         model: 'deepseek/deepseek-r1-0528:free',
-        messages,
-        temperature: 0.7,
-        max_tokens: 500
+        messages: [
+          {
+            role: 'user',
+            content: text
+          }
+        ]
       },
       {
         headers: {
-          'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-          'HTTP-Referer': 'http://localhost:5000',
-          'X-Title': 'Farmer AI Assistant',
-          'Content-Type': 'application/json'
-        },
-        timeout: 30000
+          'Authorization': `Bearer ${process.env.VITE_OPENROUTER_API_KEY}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': process.env.SITE_URL || 'http://localhost:5000',
+          'X-Title': 'Farmer App'
+        }
       }
     );
 
-    const content =
-      resp?.data?.choices?.[0]?.message?.content ||
-      resp?.data?.choices?.[0]?.message?.text ||
-      'Sorry, I could not generate an answer.';
-
-    return content.toString().trim();
-  } catch (err) {
-    console.error('AI Service Error:', err.message);
-    throw new Error(`AI Error: ${err.message}`);
+    // Extract the AI response text
+    return response.data.choices[0].message.content;
+  } catch (error) {
+    console.error('AI Service Error:', error.message);
+    throw new Error(`AI Service failed: ${error.message}`);
   }
-};
+}
+
+module.exports = { getResponse };

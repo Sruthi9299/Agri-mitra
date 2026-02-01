@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Agriculture Schemes</title>
+<link rel="stylesheet" href="gov.css">
+</head>
+<body>
+
+
+
+<!-- Top Bar -->
+
+ <a href="index.html"><button class="back-btn" onclick="history.back()">←</button></a>
+<section class="hero">
+    <h1>Welcome to Government Agriculture Schemes</h1>
+    <p>Empowering Farmers for a Sustainable Future</p>
+</section>
+
+<section id="schemes" class="schemes">
+    <h2>Popular Schemes</h2>
+    <div class="card-container">
+        <div class="card">
+            <h3>PM-Kisan</h3>
+            <p>Financial support to small and marginal farmers ₹6000/year.</p>
+        </div>
+        <div class="card">
+            <h3>Soil Health Card</h3>
+            <p>Free soil testing and recommendations for better crop yield.</p>
+        </div>
+        <div class="card">
+            <h3>Pradhan Mantri Fasal Bima Yojana</h3>
+            <p>Crop insurance to protect farmers from losses due to natural calamities.</p>
+        </div>
+    </div>
+</section>
+
+<section id="benefits" class="benefits">
+    <h2>Benefits</h2>
+    <ul>
+        <li>Financial security for farmers</li>
+        <li>Improved crop yield & soil health</li>
+        <li>Access to government resources and support</li>
+    </ul>
+</section>
+
+<section id="apply" class="apply">
+    <h2>Apply for a Scheme</h2>
+    <form id="applyForm">
+        <input type="text" placeholder="Full Name" required>
+        <input type="number" placeholder="Aadhar Number" required>
+        <input type="text" placeholder="Farm Location" required>
+        <select required>
+            <option value="">Select Scheme</option>
+            <option value="pmkisan">PM-Kisan</option>
+            <option value="soilHealth">Soil Health Card</option>
+            <option value="fasalBima">Fasal Bima Yojana</option>
+        </select>
+        <button type="submit">Submit Application</button>
+    </form>
+</section>
+
+<footer id="contact">
+    <p>© 2026 Government of India | Ministry of Agriculture</p>
+</footer>
+
+<script src="gov.js"></script>
+</body>
+</html>

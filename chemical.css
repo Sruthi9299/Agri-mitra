@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+/* Header */
+.header {
+    background: #2e7d32;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.header h1 {
+    font-size: 32px;
+}
+
+.header p {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+/* Cards Layout */
+.fertilizer-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+/* Card */
+.fertilizer-card {
+    background: white;
+    padding: 25px;
+    border-left: 6px solid #4caf50;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fertilizer-card p {
+    font-size: 13px;
+    font-weight: normal;
+    margin-top: 8px;
+    color: #4e6f50;
+}
+
+.fertilizer-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 24px;
+    }
+}
+/* ===============================
+   OFFICIAL GOVERNMENT LINKS
+================================ */
+.official-links {
+    max-width: 1000px;
+    margin: 20px auto 60px;
+    padding: 20px 25px;
+    background: #ffffff;
+    border-left: 5px solid #2e7d32;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.official-links p {
+    font-size: 14px;
+    color: #2f4f35;
+    margin-bottom: 12px;
+}
+
+.official-links ul {
+    padding-left: 20px;
+}
+
+.official-links ul li {
+    margin-bottom: 8px;
+}
+
+.official-links a {
+    text-decoration: none;
+    color: #1b5e20;
+    font-size: 14px;
+}
+
+.official-links a:hover {
+    text-decoration: underline;
+    color: #2e7d32;
+}
+.back-btn{
+position:fixed;
+top:18px;
+left:18px;
+width:45px;
+height:45px;
+border-radius:50%;
+border:none;
+background:#2e7d32;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 6px 14px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.1);
+background:#1b5e20;
+}

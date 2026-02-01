@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+/* HEADER */
+.topbar {
+    background: #2e7d32;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* LAYOUT */
+.main-container {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* PROFILE */
+.profile {
+    width: 250px;
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-right: 3px solid #a5d6a7;
+}
+
+.profile img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.crop-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    border: none;
+    background: #c8e6c9;
+    cursor: pointer;
+}
+
+.crop-btn.active {
+    background: #4caf50;
+    color: white;
+}
+
+/* CONTENT */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* CROP DETAILS */
+.crop-details {
+    background: white;
+    padding: 20px;
+    border-left: 5px solid #4caf50;
+    animation: fadeIn 0.5s;
+}
+
+.crop-details ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+/* POST BOX */
+.post-box {
+    margin-top: 20px;
+    background: white;
+    padding: 15px;
+}
+
+.post-box input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+}
+
+.post-box button {
+    margin-top: 10px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 8px;
+    width: 100%;
+}
+
+/* FEED */
+.feed {
+    margin-top: 20px;
+}
+
+.post {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid #4caf50;
+    animation: slideUp 0.4s;
+}
+
+.post span {
+    font-size: 12px;
+    color: #4e6f50;
+}
+
+/* ANIMATIONS */
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .profile {
+        width: 100%;
+        border-right: none;
+        border-bottom: 3px solid #a5d6a7;
+    }
+}

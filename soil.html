@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Soil Tips | AgriMitra</title>
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f3f8f2;
+}
+
+/* NAVBAR */
+
+.navbar{
+height:70px;
+background:#2e7d32;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:22px;
+font-weight:bold;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:60px 20px 30px;
+}
+
+.hero h1{
+font-size:42px;
+color:#1b5e20;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+color:#555;
+}
+
+/* GRID */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+/* CARD */
+
+.card{
+background:white;
+border-radius:16px;
+padding:25px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+transition:0.35s;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+height:6px;
+width:100%;
+background:#66bb6a;
+}
+
+.card:hover{
+transform:translateY(-12px);
+box-shadow:0 14px 30px rgba(0,0,0,0.15);
+}
+
+.icon{
+font-size:42px;
+margin-bottom:15px;
+}
+
+.card h3{
+color:#2e7d32;
+margin-bottom:10px;
+}
+
+.card p{
+color:#666;
+line-height:1.5;
+}
+
+/* BUTTON */
+
+.learn-btn{
+margin-top:15px;
+padding:10px 18px;
+border:none;
+background:#2e7d32;
+color:white;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.learn-btn:hover{
+background:#1b5e20;
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:40px;
+text-align:center;
+padding:25px;
+background:#e8f5e9;
+color:#2e7d32;
+font-weight:600;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:32px;
+}
+
+}
+.back-btn{
+position:fixed;
+top:18px;
+left:18px;
+width:45px;
+height:45px;
+border-radius:50%;
+border:none;
+background:#2e7d32;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 6px 14px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.1);
+background:#1b5e20;
+}
+</style>
+</head>
+
+
+<body>
+<a href="index.html"><button class="back-btn" onclick="history.back()">←</button></a>
+
+<div class="navbar">
+🌱 AgriMitra Soil Guidance
+</div>
+
+
+<section class="hero">
+<h1>Smart Soil Tips for Farmers</h1>
+<p>Healthy soil grows healthy crops. Follow these expert tips to improve fertility and maximize yield.</p>
+</section>
+
+
+
+<div class="container">
+
+<!-- CARD 1 -->
+<div class="card">
+<div class="icon">🧪</div>
+<h3>Test Your Soil Regularly</h3>
+<p>Conduct soil testing every season to know the nutrient levels, pH value, and deficiencies before planting crops.</p>
+<button class="learn-btn">Learn More</button>
+</div>
+
+<!-- CARD 2 -->
+<div class="card">
+<div class="icon">🌿</div>
+<h3>Use Organic Matter</h3>
+<p>Add compost, manure, or green waste to improve soil structure, boost microbes, and increase water retention.</p>
+<button class="learn-btn">Learn More</button>
+</div>
+
+<!-- CARD 3 -->
+<div class="card">
+<div class="icon">💧</div>
+<h3>Maintain Proper Moisture</h3>
+<p>Avoid overwatering or drying. Balanced moisture keeps nutrients available for crops.</p>
+<button class="learn-btn">Learn More</button>
+</div>
+
+<!-- CARD 4 -->
+<div class="card">
+<div class="icon">🔄</div>
+<h3>Practice Crop Rotation</h3>
+<p>Rotating crops prevents nutrient depletion and reduces pest and disease buildup.</p>
+<button class="learn-btn">Learn More</button>
+</div>
+
+<!-- CARD 5 -->
+<div class="card">
+<div class="icon">🌾</div>
+<h3>Prevent Soil Erosion</h3>
+<p>Use cover crops and mulching to protect topsoil from wind and water erosion.</p>
+<button class="learn-btn">Learn More</button>
+</div>
+
+<!-- CARD 6 -->
+<div class="card">
+<div class="icon">⚖</div>
+<h3>Balance Soil pH</h3>
+<p>Most crops thrive in neutral pH. Add lime to reduce acidity or sulfur to lower alkalinity.</p>
+<button class="learn-btn">Learn More</button>
+</div>
+
+<!-- CARD 7 -->
+<div class="card">
+<div class="icon">🚜</div>
+<h3>Avoid Over-Tilling</h3>
+<p>Excessive tilling destroys soil structure and beneficial organisms.</p>
+<button class="learn-btn">Learn More</button>
+</div>
+
+<!-- CARD 8 -->
+<div class="card">
+<div class="icon">🍂</div>
+<h3>Mulching is Powerful</h3>
+<p>Mulch conserves moisture, regulates temperature, and suppresses weeds.</p>
+<button class="learn-btn">Learn More</button>
+</div>
+
+</div>
+
+
+<div class="footer">
+Good Soil Today — Better Harvest Tomorrow 🌾
+</div>
+
+
+</body>
+</html>

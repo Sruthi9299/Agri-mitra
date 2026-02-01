@@ -1,0 +1,213 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ===== BODY WITH BACKGROUND ===== */
+body {
+    min-height: 100vh;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("agri-bg.jpg"); /* change path if needed */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ===== DARK OVERLAY ===== */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 0;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+    position: relative;
+    z-index: 1;
+
+    width: 400px;
+    max-width: 92%;
+
+    padding: 26px;
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+
+    animation: fadeScale 0.6s ease;
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-4px);
+}
+
+/* ===== CARD ENTRY ANIMATION ===== */
+@keyframes fadeScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ===== TOGGLE BUTTONS ===== */
+.toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.toggle button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+
+    background: #e0e0e0;
+    color: #333;
+    font-weight: 600;
+    font-size: 15px;
+
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.toggle button.active {
+    background: #2e7d32;
+    color: #fff;
+}
+
+/* ===== FORMS ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    animation: slideFade 0.4s ease;
+}
+
+/* ===== FORM SWITCH ANIMATION ===== */
+@keyframes slideFade {
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+form h2 {
+    text-align: center;
+    color: #2e7d32;
+    margin-bottom: 6px;
+}
+
+/* ===== INPUTS & SELECT ===== */
+input,
+select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+input:focus,
+select:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+    outline: none;
+}
+
+/* ===== BUTTONS ===== */
+button {
+    padding: 11px;
+    border-radius: 8px;
+    border: none;
+
+    background: #2e7d32;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.3s ease;
+}
+
+button:hover {
+    background: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    form h2 {
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+.info-box {
+    background: #f1f8e9;
+    border: 1px solid #c5e1a5;
+    color: #33691e;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+    .back-btn{
+position:fixed;
+top:18px;
+left:18px;
+width:45px;
+height:45px;
+border-radius:50%;
+border:none;
+background:#2e7d32;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 6px 14px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:scale(1.1);
+background:#1b5e20;
+}
